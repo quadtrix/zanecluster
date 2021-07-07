@@ -16,15 +16,15 @@ const (
 
 func NewCluster(secure bool, secConfigFile string, clusterNet types.Network) (*types.Cluster, error) {
 	cl := new(types.Cluster)
-	cl.secure = secure
-	if cl.secure {
+	cl.Secure = secure
+	if cl.Secure {
 		secconfig, err := NewSecureConfig(secConfigFile)
 		if err != nil {
 			return nil, err
 		}
-		cl.secureConfig = secconfig
+		cl.SecureConfig = secconfig
 	}
-	cl.clusterNet = clusterNet
+	cl.ClusterNet = clusterNet
 	return cl, nil
 }
 
@@ -42,18 +42,18 @@ func NewSecureConfig(configfile string) (*types.SecureClusterConfig, error) {
 	if err != nil {
 		return nil, err
 	}
-	scc.trustedCertPool = tcp
-	scc.clusterNet = types.Network{
-		net:  clusterConfig.Cluster.Network,
-		mask: clusterConfig.Cluster.NetMask,
-		port: clusterConfig.Cluster.Port,
+	scc.TrustedCertPool = tcp
+	scc.ClusterNet = types.Network{
+		Net:  clusterConfig.Cluster.Network,
+		Mask: clusterConfig.Cluster.NetMask,
+		Port: clusterConfig.Cluster.Port,
 	}
-	scc.clusterPassword = types.EncryptedClusterPassword{
-		encryption: clusterConfig.Cluster.Encryption,
-		pwd:        clusterConfig.Cluster.Password,
+	scc.ClusterPassword = types.EncryptedClusterPassword{
+		Encryption: clusterConfig.Cluster.Encryption,
+		Pwd:        clusterConfig.Cluster.Password,
 	}
-	scc.serverCert = clusterConfig.Cluster.SSLCertFile
-	scc.serverKey = clusterConfig.Cluster.SSLKeyFile
+	scc.ServerCert = clusterConfig.Cluster.SSLCertFile
+	scc.ServerKey = clusterConfig.Cluster.SSLKeyFile
 	return scc, nil
 }
 

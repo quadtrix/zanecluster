@@ -7,43 +7,43 @@ import (
 )
 
 type ClusterMember struct {
-	ip       string
-	port     int
-	id       string
-	lastseen time.Time
+	IP       string
+	Port     int
+	ID       string
+	LastSeen time.Time
 }
 
 type ClusterMembers struct {
-	count   int
-	members []ClusterMember
+	Count   int
+	Members []ClusterMember
 }
 
 type Encryption int
 
 type EncryptedClusterPassword struct {
-	encryption Encryption
-	pwd        string
+	Encryption Encryption
+	Pwd        string
 }
 
 type Network struct {
-	net  string
-	mask string
-	port int
+	Net  string
+	Mask string
+	Port int
 }
 
 type SecureClusterConfig struct {
-	trustedCertPool *x509.CertPool
-	serverCert      string
-	serverKey       string
-	clusterPassword EncryptedClusterPassword
-	clusterNet      Network
+	TrustedCertPool *x509.CertPool
+	ServerCert      string
+	ServerKey       string
+	ClusterPassword EncryptedClusterPassword
+	ClusterNet      Network
 }
 
 type Cluster struct {
-	members      ClusterMembers
-	secure       bool
-	secureConfig *SecureClusterConfig
-	clusterNet   Network
+	Members      ClusterMembers
+	Secure       bool
+	SecureConfig *SecureClusterConfig
+	ClusterNet   Network
 }
 
 type ClusterConfig struct {
